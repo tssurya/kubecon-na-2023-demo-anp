@@ -1,0 +1,15 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: BaselineAdminNetworkPolicy
+metadata:
+  name: default # singleton
+spec:
+  subject:
+    namespaces: {}
+  egress:
+  - name: "deny-egress-to-forbidden-forest-from-everyone"
+    action: "Deny"
+    to:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: forbidden-forest

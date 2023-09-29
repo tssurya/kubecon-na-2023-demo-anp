@@ -1,0 +1,18 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: pass-from-professors-to-forbidden-forrest
+spec:
+  priority: 3
+  subject:
+    namespaces:
+      matchLabels:
+        kubernetes.io/metadata.name: professors
+  egress:
+  - name: "pass-from-professors-to-forbidden-forrest"
+    action: "Pass"
+    to:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: forbidden-forest

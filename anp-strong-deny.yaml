@@ -1,0 +1,16 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: deny-egress-to-forbidden-forrest-from-everyone
+spec:
+  priority: 5
+  subject:
+    namespaces: {}
+  egress:
+  - name: "deny-egress-to-forbidden-forrest-from-everyone"
+    action: "Deny"
+    to:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: forbidden-forest
