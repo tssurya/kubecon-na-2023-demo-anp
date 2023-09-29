@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dumbledore
+  labels:
+    role: principal
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gryffindor
+  labels:
+    house: gryffindor
+    captain: harry-potter
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: slytherin
+  labels:
+    house: slytherin
+    captain: draco-malfoy

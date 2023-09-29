@@ -1,0 +1,45 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: deny-ingress-from-houses
+spec:
+  priority: 10
+  subject:
+    namespaces:
+      matchLabels:
+          kubernetes.io/metadata.name: dumbledore
+  ingress:
+  - name: "deny-all-ingress-from-gryffindor-to-dumbledore"
+    action: "Deny"
+    from:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: gryffindor
+  - name: "deny-all-ingress-from-slytherin-to-dumbledore"
+    action: "Deny"
+    from:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: slytherin
+---
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: allow-ingress-from-dumbledore
+spec:
+  priority: 11
+  subject:
+    namespaces:
+      matchExpressions:
+        - {key: house, operator: In, values: [gryffindor, slytherin]}
+  ingress:
+  - name: "allow-all-ingress-from-dumbledore-to-houses"
+    action: "Allow"
+    from:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: dumbledore
+
