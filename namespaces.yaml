@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: professors
+  labels:
+    role: supervisor
+    owner: minerva-mcgonagall
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gryffindor
+  labels:
+    house: gryffindor
+    owner: harry-potter
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: slytherin
+  labels:
+    house: slytherin
+    owner: draco-malfoy
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: forbidden-forest
+  labels:
+    type: forbidden
