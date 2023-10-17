@@ -2,17 +2,13 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-ingress-from-houses-to-dumbledore
-  namespace: dumbledore
+  name: allow-egress-to-forbidden-forest-from-professors
+  namespace: professors
 spec:
   policyTypes:
-    - Ingress
-  ingress:
-  - from:
+    - Egress
+  egress:
+  - to:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: gryffindor
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: slytherin
+          kubernetes.io/metadata.name: forbidden-forest
