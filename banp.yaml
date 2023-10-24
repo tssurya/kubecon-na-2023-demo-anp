@@ -4,18 +4,12 @@ metadata:
   name: default # singleton
 spec:
   subject:
-    namespaces:
-      matchLabels:
-          kubernetes.io/metadata.name: professors
+    namespaces: {}
   ingress:
-  - name: "deny-all-ingress-to-professor"
-    action: "Deny"
-    from:
-    - namespaces:
-        namespaceSelector: {}
-  egress:
-  - name: "deny-all-egress-from-professor"
+  - name: "deny-all-egress-to-forbidden-forest"
     action: "Deny"
     to:
     - namespaces:
-        namespaceSelector: {}
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: forbidden-forest
